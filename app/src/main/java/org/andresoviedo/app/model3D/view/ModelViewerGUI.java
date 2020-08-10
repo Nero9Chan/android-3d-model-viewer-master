@@ -67,6 +67,8 @@ final class ModelViewerGUI extends GUI {
 
         fps.setPosition(GUI.POSITION_TOP_LEFT);
         //addBackground(fps).setColor(new float[]{0.25f, 0.25f, 0.25f, 0.25f});
+
+
     }
 
     private void initMenu2() {
@@ -198,6 +200,7 @@ final class ModelViewerGUI extends GUI {
             float[] newPosition = ((MoveEvent) event).getWidget().getLocation().clone();
             newPosition[1]+=dy;
             ((MoveEvent) event).getWidget().setLocation(newPosition);
+
         }
         return true;
     }

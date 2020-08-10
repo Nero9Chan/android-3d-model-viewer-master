@@ -41,6 +41,7 @@ public class MainActivity extends Activity {
 		// Start Model activity.
 		MainActivity.this.startActivity(new Intent(MainActivity.this.getApplicationContext(), MenuActivity.class));
 		MainActivity.this.finish();
+
 	}
 
 	@SuppressWarnings("unused")

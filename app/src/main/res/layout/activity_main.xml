@@ -17,4 +17,5 @@
         android:layout_gravity="center"
         android:text="@string/app_version" />
 
+
 </LinearLayout>

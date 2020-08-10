@@ -56,7 +56,7 @@ public class ModelActivity extends Activity implements EventListener {
     /**
      * Background GL clear color. Default is light gray
      */
-    private float[] backgroundColor = new float[]{0.0f, 0.0f, 0.0f, 1.0f};
+    private float[] backgroundColor = new float[]{0.0f, 3.0f, 4.0f, 1.0f}; //light blue
 
     private ModelSurfaceView gLView;
     private TouchController touchController;
@@ -97,6 +97,7 @@ public class ModelActivity extends Activity implements EventListener {
 
         }
 
+
         handler = new Handler(getMainLooper());
 
         // Create our 3D scenario
@@ -120,6 +121,9 @@ public class ModelActivity extends Activity implements EventListener {
             gLView.addListener(this);
             setContentView(gLView);
             scene.setView(gLView);
+            Log.d("checking", "SCENE: " + scene.toString());
+            Log.d("checking", "THIS: " + this.toString());
+            Log.d("checking", "BGCOLOR: " + backgroundColor);
         } catch (Exception e) {
             Log.e("ModelActivity",e.getMessage(),e);
             Toast.makeText(this, "Error loading OpenGL view:\n" +e.getMessage(), Toast.LENGTH_LONG).show();

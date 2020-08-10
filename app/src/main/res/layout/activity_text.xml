@@ -14,7 +14,8 @@
         android:scrollbars="vertical"
         android:text="Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#ffffff" >
+        android:textColor="#ffffff"
+        >
     </TextView>
 
 </LinearLayout>
