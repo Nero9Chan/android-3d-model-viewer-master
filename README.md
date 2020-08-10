@@ -4,81 +4,29 @@ Android 3D Model Viewer
 ![codeship badge](https://codeship.com/projects/52cf9560-deb2-0134-4203-2aaddef843aa/status?branch=master)
 
 This is a demo of OpenGL ES 2.0.
-It is an android application with a 3D engine that can load Wavefront OBJ, STL, DAE & glTF files.
-The application is based on andresoviedo's project which can be found [here](https://github.com/andresoviedo/android-3D-model-viewer) with an additional function of loading and rendering glTF format.
-<br>
-The purpose of this application is to learn and share how to draw using OpenGLES and Android. As this is my first android app, it is highly probable that there are bugs; but I will try to continue improving the app and adding more features.
+It is basically an android application with a 3D engine that can load Wavefront OBJ, STL & DAE files.
+The purpose of this application is to learn and share how to draw using OpenGL language.
+The application does not use any third party library.
 
 * Wafefront format (OBJ): https://en.wikipedia.org/wiki/Wavefront_.obj_file
 * STereoLithography format (STL): https://en.wikipedia.org/wiki/STL_(file_format)
 * Collada format (DAE): https://en.wikipedia.org/wiki/COLLADA
-* glTF format (gltf): https://github.com/KhronosGroup/glTF
 
 
-News (12/08/2019)
+News (15/07/2020)
 =================
 
-* New: Add partially support for glTF models
+* New version released 3.0.0
+* Collada support for polygon with holes
+* Wavefront support for smoothing groups
+* New FPS counter (frames per second)
+* Full refactoring of the code
 
-Supported Feature for glTF Models
-==================
-> * Scene
->   
->   * [x]  choosing scenes
-> * Node
->   
->   * [x]  Transformations (matrix, TRS)
->   * [x]  children
->   * [x]  mesh
->   * [ ]  camera 
->       * currently only use a single camera and force the object at center for easier view
->   * [ ]  skin
->   * [ ]  weights
-> * Mesh
->   
->   * [x]  primitives
->   * [ ]  weights
-> * Primitive
->   
->   * [x]  Attributes
->     
->     * [x]  positions, normals, tangents, 2 tex coord sets, 1 color set, joints, weights
->     * [x]  all tex coord formats
->     * [x]  TEX_COORD_1
->     * [x]  all color formats
->     * [x]  COLOR_0
->   * [x]  Indices
->   * [x]  No Indices (-> `glDrawArrays()`)
->   * [x]  Material
->   * Mode
->     
->     * [x]  Triangles
->     * [x]  Others: Points, Lines, LineLoop, LineStrip, TriangleStrip, TriangleFan
->   * [ ]  targets
-> * Material
->   
->   * [x]  pbrMetallicRoughness
->     
->     * [x]  base color (factor + texture)
->     * [ ]  full PBR lighting
->   * [ ]  normalTexture
->   * [ ]  occlusionTexture
->   * [x]  emissiveTexture  + emissiveFactor
->   * [ ]  alphaMode + alphaCutoff*
->     (works, but not always correct - transparency/depth sorting is missing)
->   * [x]  doubleSided
-> * Texture
->   
->   * [x]  Sampler
->   * [x]  Image
->   * [x]  textureInfo (texCoord set index)
-> * [ ]  Animation
-> * [ ]  Skin
 
 Demo
 ====
 
-Checkout this to see the features of the application: https://youtu.be/AB8fHq_CkpU
+Checkout this to see the features of the application: https://www.youtube.com/watch?v=PV92DKohXXk
 
 
 Android Market
@@ -114,53 +62,49 @@ The app comes with some included 3D models that were taken for free from Interne
 Whats next
 ==========
 
-* Chromecast support
+* Support for glTF standard format
 * 3D without glasses
 * Augmented reality
-* Collada:  Show bind pose, key frames and variate speed
-* glTF: Add animation support
-* glTF: Apply PBR material
-* Add support to Android API below level 24
-* Clean up code
 
 
 Features
 ========
 
-  - Supports >= API Level 24
+  - Supports >= Android 4.0.1 (Ice Cream Sandwich) - Min API Level 14 -> Target API Level 28
   - OpenGL ES 2.0 API
-  - Formats: OBJ (wavefront), STL (STereoLithography), DAE (Collada-BETA), gltf (glTF)
+  - Formats: OBJ (wavefront), STL (STereoLithography) & DAE (Collada-BETA)
   - calculation of normals
   - transformations: scaling, rotation, translation
   - colors
   - textures
   - lighting
   - wireframe & points mode
-  - bounding box drawing
-  - object selection
+  - holes
+  - smoothing
+  - bounding box
+  - object pick
   - camera support
     - tap to select object
     - drag to move camera
     - rotate with 2 fingers to rotate camera
     - pinch & spread to zoom in/out the camera
-  - skeletal animations
+  - skeletal animations (collada dae)
   - ray collision detection
-  - stereoscopic 3D
+  - stereoscopic 3D: anaglyph + cardboard
   - other:
     - texture loader
     - lightweight: only 1 Megabyte
+    - file explorer
 
 
 Try it
 ======
 
 You can install the application in either of these ways:
-  <br>Without glTF support:
+
   * Play Store:  https://play.google.com/store/apps/details?id=org.andresoviedo.dddmodel2
   * APK: [app-release.apk](app/build/outputs/apk/release/app-release.apk)
-
-  With glTF support:
-  * clone the repository, compile with gradle and install with adb
+  * Source code: clone the repository, compile with gradle and install with adb
 
 ```
     export ANDROID_HOME=/home/$USER/Android/Sdk
@@ -168,7 +112,6 @@ You can install the application in either of these ways:
     adb install -r app/build/outputs/apk/app-debug.apk
     adb shell am start -n org.andresoviedo.dddmodel2/org.andresoviedo.app.model3D.MainActivity
 ```
-* clone the repository, build and run with android studio
 
 Open the application. You should see a menu. From there you can load models
 Once the model is rendered, pinch and rotate to see the 3D scene from another perspective.
@@ -240,8 +183,28 @@ ChangeLog
 
 (f) fixed, (i) improved, (n) new feature
 
+- 3.0.0 (15/07/2020)
+  - (n) Support for Object Groups  (wavefront: o,g, dae: <geometry>)
+  - (n) Support for Smoothing Groups (wavefront)
+  - (n) migrated project to androidx compat libraries
+  - (n) GUI - fps counter - experimental framework
+  - (n) Collada support for polygon with holes (<ph>)
+  - (i) Complete re-engineering and refactoring of the code
+  - (i) Wavefront + Collada Loader reimplemented
+  - (f) Fixed overall bugs
+- 2.7.0 (13/11/2019)
+  - (n) new blending force mode to 50% 
+  - (f) fixed light rendering issues on shaders #125 (diffuse + specular)
+  - (f) fixed bugs when DAE had multiple geometries #125
+  - (f) fixed textures not being linked issue
+  - (f) fixed performance issues: now rendering below 5% cpu & no ram allocation
+- 2.6.0 (20/10/2019)
+  - (n) #81 Support for collada files with multiple geometries
+  - (f) #94 fixed setVisible(boolean)
+  - (f) #92 fixed multiple color rendering for non-triangulated file.obj
+  - (i) overall engine improved
 - 2.5.1 (20/05/2019)
-  - (f) wavefront loader fixed for faces point to negative indices
+  - (f) wavefront loader fixed for meshObject point to negative indices
 - 2.5.0 (19/05/2019)
   - (n) new blending toggle
   - (n) new color toggle
@@ -309,14 +272,14 @@ ChangeLog
 - 1.2.6 (02/04/2017)
   - (f) Fixed #12. Drawing the wireframe using GL_LINES and the index buffer (drawElements)
 - 1.2.5 (01/04/2017)
-  - (f) Fixed #10. Map faces to texture only when using the only loaded texture
+  - (f) Fixed #10. Map meshObject to texture only when using the only loaded texture
   - (f) Fixed #11. Generation of missing vertex normals
 - 1.2.4 (30/03/2017)
   - (f) Fixed #5. Memory performance optimization
 - 1.2.3 (27/03/2017)
   - (f) Fixed #1. Cpu performance optimization
 - 1.2.2 (25/03/2017)
-  - (f) Fixed #9. IOOBE loading face normals when faces had no texture or normals
+  - (f) Fixed #9. IOOBE loading face normals when meshObject had no texture or normals
 - 1.2.1 (27/02/2017)
   - (f) Fixed loading external files issue #6
   - (i) Project moved to gradle

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#ECC0FF">
+    android:layout_height="fill_parent" >
     <ImageView
         android:id="@+id/demo_item_icon"
         android:layout_width="64dp"
@@ -17,7 +16,7 @@
         android:layout_toRightOf="@+id/demo_item_icon"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
-        android:background="#ECC0FF"
+        android:background="#000000"
         android:textColor="#ffffff"
         android:textSize="32sp" />
         

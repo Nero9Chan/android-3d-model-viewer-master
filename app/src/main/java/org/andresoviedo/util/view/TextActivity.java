@@ -18,10 +18,9 @@ public class TextActivity extends Activity {
 		setContentView(R.layout.activity_text);
 
 		Bundle b = getIntent().getExtras();
-		savedInstanceState.putString("backgroundColor", "0 0 0 1");
 		String title = b.getString("title");
 		setTitle(title);
-
+		
 		String value = b.getString("text");
 		text = findViewById(R.id.text_activity_text);
 		text.setMovementMethod(LinkMovementMethod.getInstance());

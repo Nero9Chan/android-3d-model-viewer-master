@@ -2,8 +2,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical" >
 
     <!-- <WebView
         android:id="@+id/main_logo_webview"

@@ -28,6 +28,7 @@ public class ExampleSceneLoader extends SceneLoader {
 	public ExampleSceneLoader(ModelActivity modelActivity) {
 		super(modelActivity);
 		Log.d("checking", "color: " + modelActivity.getBackgroundColor().toString());
+		modelActivity.getIntent().getExtras().putString("backgroundColor", "0 3 4 1");
 	}
 
 	// TODO: fix this warning

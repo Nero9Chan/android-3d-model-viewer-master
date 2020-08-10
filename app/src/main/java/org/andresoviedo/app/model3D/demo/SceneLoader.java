@@ -206,6 +206,7 @@ public class SceneLoader implements LoaderTask.Callback {
 
         animateLight();
 
+
         // smooth camera transition
         camera.animate();
 
